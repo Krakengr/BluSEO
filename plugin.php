@@ -17,18 +17,18 @@ class pluginBluSeo extends Plugin {
 		global $Language;
 
 		$html  = '<div>';
-		$html .= '<label>'.$Language->get('default-image').'</label>';
-		$html .= '<input id="jsdefaultImage" name="defaultImage" type="text" value="'.$this->getValue('defaultImage').'" placeholder="https://">';
+		$html .= '<label>' . $Language->get('default-image') . '</label>';
+		$html .= '<input id="jsdefaultImage" name="defaultImage" type="text" value="' . $this->getValue('defaultImage') . '" placeholder="https://">';
 		$html .= '</div>';
 		
 		$html .= '<div>';
-		$html .= '<label>'.$Language->get('description').'</label>';
-		$html .= '<input id="jsdescription" name="description" type="text" value="'.$this->getValue('description').'" />';
+		$html .= '<label>' . $Language->get('description') . '</label>';
+		$html .= '<input id="jsdescription" name="description" type="text" value="' . $this->getValue('description') . '" />';
 		$html .= '</div>';
 		
 		$html .= '<div>';
-		$html .= '<label>'.$Language->get('fbpage').'</label>';
-		$html .= '<input id="jsfbpage" name="fbpage" type="text" value="'.$this->getValue('fbpage').'" />';
+		$html .= '<label>' . $Language->get('fbpage') . '</label>';
+		$html .= '<input id="jsfbpage" name="fbpage" type="text" value="' . $this->getValue('fbpage') . '" />';
 		$html .= '</div>';
 
 		return $html;
@@ -66,7 +66,7 @@ class pluginBluSeo extends Plugin {
 			$og['type']			= 'website';
 			$og['title']		= $Site->slogan() . ' | ' . $Site->title();
 			$og['description']	= ( Text::isNotEmpty( $this->getValue( 'description' ) ) ) ? $this->getValue( 'description' ) : $Site->description();
-			$og['image']		= $this->getValue('defaultImage');
+			$og['image']		= $this->getValue( 'defaultImage' );
 			$og['url']			= $Site->url();
 			$og['noindex']		= true;
 			
@@ -75,7 +75,7 @@ class pluginBluSeo extends Plugin {
 			$og['type']			= 'website';
 			$og['title']		= $Site->slogan() . ' | ' . $Site->title();
 			$og['description']	= ( Text::isNotEmpty( $this->getValue( 'description' ) ) ) ? $this->getValue( 'description' ) : $Site->description();
-			$og['image']		= $this->getValue('defaultImage');
+			$og['image']		= $this->getValue( 'defaultImage' );
 			$og['url']			= $Site->url();
 			$og['noindex']		= true;
 			
@@ -94,9 +94,9 @@ class pluginBluSeo extends Plugin {
 
 		}
 		
-		$html  = PHP_EOL . '<!-- This site is optimized with the BluSEO plugin - https://g3ar.xyz/ -->' . PHP_EOL;
+		$html  = PHP_EOL . '<!-- This site is optimized with the BluSEO plugin - https://g3ar.xyz/projects/bluseo-seo-plugin-bludit/ -->' . PHP_EOL;
 		
-		if ($og['noindex'])
+		if ( $og['noindex'] )
 			$html .= '<meta name="robots" content="noindex,follow"/>' . PHP_EOL;
 		
 		$html .= '<link rel="canonical" href="' . $og['url'] . '" />' . PHP_EOL;
@@ -115,7 +115,7 @@ class pluginBluSeo extends Plugin {
 			$cat = $page->categoryMap(true);
 			
 			$tags = $page->tags(true);
-				if (!empty($tags)) {
+				if ( !empty($tags) ) {
 					foreach($tags as $tagKey=>$tagName)
 						$html .= '<meta property="article:tag" content="' . htmlspecialchars( $tagName, ENT_QUOTES ) . '" />' . PHP_EOL;
 				}
@@ -132,11 +132,6 @@ class pluginBluSeo extends Plugin {
 				$html .= '<meta property="og:updated_time" content="' . date ('c', strtotime($page->dateModified())) . '" />' . PHP_EOL;
 			}
 			
-			//$html .= '<meta property="og:image" content="' . $og['image'] . '" />' . PHP_EOL;
-		
-			//if (substr($og['image'], 0, 8) == "https://")
-				//$html .= '<meta property="og:image:secure_url" content="' . $og['image'] . '" />' . PHP_EOL;
-			
 			if (!empty($og['image'])) {
 				
 				list($img_width, $img_height) = @getimagesize($og['image']);
@@ -149,11 +144,11 @@ class pluginBluSeo extends Plugin {
 			} else {
 				
 				$src = $this->getImage( $page->content() );
-					if ($src!==false)
+					if ( $src!==false )
 						$og['image'] = $src;
 					else {
-					if (Text::isNotEmpty($this->getValue('defaultImage')))
-						$og['image'] = $this->getValue('defaultImage');
+					if ( Text::isNotEmpty($this->getValue('defaultImage')) )
+						$og['image'] = $this->getValue( 'defaultImage' );
 				}
 			}
 				

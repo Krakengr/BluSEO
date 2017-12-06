@@ -17,7 +17,7 @@ class pluginBluSeo extends Plugin {
 		global $Language;
 
 		$html  = '<div>';
-		$html .= '<label>'.$Language->get('Default image').'</label>';
+		$html .= '<label>'.$Language->get('default-image').'</label>';
 		$html .= '<input id="jsdefaultImage" name="defaultImage" type="text" value="'.$this->getValue('defaultImage').'" placeholder="https://">';
 		$html .= '</div>';
 		

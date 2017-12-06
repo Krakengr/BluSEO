@@ -110,7 +110,7 @@ class pluginBluSeo extends Plugin {
 		if( $WHERE_AM_I == 'page' ) {
 			
 			if ( Text::isNotEmpty( $this->getValue('fbpage') ) )
-				$html .= '<meta property="article:publisher" content="' . $this->getValue('fbpage') . '" />';
+				$html .= '<meta property="article:publisher" content="' . $this->getValue('fbpage') . '" />' . PHP_EOL;
 			
 			$cat = $page->categoryMap(true);
 			

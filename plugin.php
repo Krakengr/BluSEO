@@ -178,4 +178,39 @@ class pluginBluSeo extends Plugin {
 
 		return false;
 	}
+	
+	public function beforeAll()
+	{
+		global $Site;
+						
+		if( $this->webhook( 'robots.txt' ) ) {
+			
+			//Support Blumap and Sitemap Plugins
+			$blumap_xml = PATH_ROOT.'bl-content'.DS.'databases'.DS.'plugins'.DS.'blumap'.DS.'sitemap.xml';
+			$sitemap_xml = PATH_ROOT.'bl-content'.DS.'databases'.DS.'plugins'.DS.'sitemap'.DS.'sitemap.xml';
+			
+			// Make it a plain text file
+			header('Content-Type:text/plain');
+
+			// Build data
+			$html = 'User-agent: *' . PHP_EOL;
+			$html .= 'Disallow: /bl-content' . PHP_EOL;
+			$html .= 'Disallow: /bl-kernel' . PHP_EOL;
+			$html .= 'Disallow: /bl-languages' . PHP_EOL;
+			$html .= 'Disallow: /bl-plugins' . PHP_EOL;
+			$html .= 'Disallow: /bl-themes' . PHP_EOL;
+			$html .= 'Disallow: /README.md' . PHP_EOL;
+			$html .= 'Allow: /*.js' . PHP_EOL;
+			$html .= 'Allow: /*.css' . PHP_EOL;
+			$html .= 'Host: ' . $Site->url() . PHP_EOL;
+						
+			if ( file_exists( $blumap_xml ) || file_exists( $sitemap_xml ) )
+				$html .= 'Sitemap: ' . $Site->url() . '/sitemap.xml' . PHP_EOL;
+			
+			echo $html;
+
+			// Terminate the run successfully
+			exit(0);
+		}
+	}
 }

@@ -1,0 +1,10 @@
+{
+	"plugin-data":
+	{
+		"name": "BluSeo",
+		"description": "Bludit için SEO eklentisi."
+	},
+	"default-image": "Varsayılan resim",
+	"description": "Dizinde ve arşivlerde gösterilecek varsayılan açıklama. En fazla 150 karakter. Bludit'in açıklamasını kullanmak için boş bırakın.",
+	"fbpage": "Arama motorları, hangi Facebook profilinin bu siteyle ilişkilendirildiğini bilsinler."
+}
